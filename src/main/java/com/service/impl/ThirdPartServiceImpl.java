@@ -16,9 +16,12 @@ public class ThirdPartServiceImpl implements com.service.ThirdPartService {
 
     @Override
     public String setThirdPartMessage(ThirdPartRequestVO thirdPartMessage){
-        String sql="";
-        Object[] parm=new Object[]{};
-        System.out.println("rrrr");
+        if(thirdPartMessage==null || thirdPartMessage.getBstrMoMessageID()==null || thirdPartMessage.getBstrMessageContent()==null
+                || thirdPartMessage.getBstrMessageContent().length()>200){
+            return "";
+        }
+        String sql="update sms_send_tb set msg = ?,flag='0' where message_id=? and flag = '9'";
+        Object[] parm=new Object[]{thirdPartMessage.getBstrMessageContent(),thirdPartMessage.getBstrMoMessageID()};
         //int[] types = new int[]{Types.INTEGER,Types.VARCHAR,Types.CHAR,Types.VARCHAR};
         //jdbcTemplate.update(sql,parm);
         return getResponseXml(thirdPartMessage.getBstrMoMessageID());

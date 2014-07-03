@@ -23,7 +23,7 @@ public class ReceiveBJPostController extends BaseController{
 
     @RequestMapping("receiveMessage")
     public void receiveMessage(ThirdPartRequestVO thirdPartRequestVO,HttpServletResponse response) throws IOException {
-        thirdPartService.setThirdPartMessage(thirdPartRequestVO)  ;
-        ajaxString("x", response);
+        String responseXml = thirdPartService.setThirdPartMessage(thirdPartRequestVO)  ;
+        ajaxString(responseXml, response);
     }
 }

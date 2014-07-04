@@ -24,7 +24,7 @@ public class ThirdPartServiceImpl implements com.service.ThirdPartService {
                 || thirdPartMessage.getBstrMessageContent().length()>200){
             return "";
         }
-        String sql="update sms_send_tb set msg = ?,flag='1',business_code=? where message_id=? and flag = '9'";
+        String sql="update sms_send_tb set msg = ?,flag='0',business_code=? where message_id=? and flag = '9'";
         Object[] parm=new Object[]{thirdPartMessage.getBstrMessageContent(),thirdPartMessage.getBstrBusinessCode(),thirdPartMessage.getBstrMoMessageID()};
         //int[] types = new int[]{Types.INTEGER,Types.VARCHAR,Types.CHAR,Types.VARCHAR};
         jdbcTemplate.update(sql,parm);
